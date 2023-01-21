@@ -1,4 +1,4 @@
-import { randFirstName } from '@ngneat/falso';
+import { getFirstName } from 'testing-data';
 import type { providerType } from "../types";
 
 export const firstNameProvider: providerType = {
@@ -12,7 +12,7 @@ export const firstNameProvider: providerType = {
         return label.innerText.indexOf('First Name') !== -1;
     },
 
-    filler: (): string => randFirstName(),
+    filler: (): string => getFirstName({}),
 
     sendEvent: false
 }

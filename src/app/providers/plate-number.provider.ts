@@ -1,4 +1,4 @@
-import { getVehicle } from 'testing-data';
+import { randomNumber } from "../helpers";
 import type { providerType } from "../types";
 export const plateNumberProvider: providerType = {
     name: 'plateNumberProvider',
@@ -11,9 +11,9 @@ export const plateNumberProvider: providerType = {
         return label.innerText.indexOf('Plate') !== -1;
     },
 
-    filler(): string {
-        const vehicle = getVehicle({});
-        console.table(vehicle);
-        return vehicle.numberPlate as string;
-    }
+    filler: (): string => randomNumber(10000, 90000).toString(),
+
+    sendEvent: true,
+
+    eventName: 'input'
 }

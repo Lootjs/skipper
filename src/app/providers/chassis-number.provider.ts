@@ -17,5 +17,9 @@ export const chassisNumberProvider: providerType = {
         const vehicle = getVehicle({});
         console.table(vehicle);
         return vehicle.vin as string;
-    }
+    },
+
+    sendEvent: true,
+
+    eventName: 'input'
 }

@@ -1,17 +1,31 @@
-import { randPhoneNumber } from '@ngneat/falso';
-import type {providerType} from "../types";
+import { randomNumber } from "../helpers";
+import type { providerType } from "../types";
+
+const prefix = 974;
+
+type phoneOptions = {
+    withPrefix: boolean;
+}
+
+const primaryNumbers = [3, 5, 7];
+const phoneRanges = [
+    1000000,
+    8000000,
+]
+
+const getRandPhone = (options: phoneOptions = { withPrefix: false }) => {
+    const firstNumber = primaryNumbers[Math.floor(Math.random() * primaryNumbers.length)];
+    const restNumbers = randomNumber(phoneRanges[0], phoneRanges[1]);
+
+    return `${options.withPrefix ? prefix : ''}${firstNumber}${restNumbers}`;
+}
 
 export const userPhoneProvider: providerType = {
     name: 'userPhoneProvider',
 
     matcher: (input: HTMLInputElement) => input.type === 'tel',
 
-    filler(): string {
-        // return '';
-        const phone = randPhoneNumber({ countryCode: 'QA' }).replace(/\s/g, '');
-
-        return phone.slice(4, 8) + ' ' + phone.slice(8);
-    },
+    filler: getRandPhone,
 
     sendEvent: true,
 

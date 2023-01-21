@@ -1,12 +1,12 @@
-import { randEmail } from '@ngneat/falso';
-import type { inputableProviderType } from "../types";
+import { createRandomEmail } from 'testing-data';
+import type { providerType } from "../types";
 
-export const userEmailProvider: inputableProviderType = {
+export const userEmailProvider: providerType = {
     name: 'userEmailProvider',
 
     matcher: (input: HTMLInputElement) => input.name === 'email',
 
-    filler: (): string => randEmail(),
+    filler: (): string => createRandomEmail(),
 
     sendEvent: true,
 
